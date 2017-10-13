@@ -14,4 +14,5 @@ class ProductProduct(models.Model):
     @api.multi
     def _compute_global_stock(self):
         for product in self:
-            product.global_stock = product.sudo().qty_available
+            product_without_location = product.with_context(location=None)
+            product.global_stock = product_without_location.sudo().qty_available
