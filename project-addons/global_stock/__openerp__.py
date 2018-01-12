@@ -13,7 +13,8 @@
     "installable": True,
     "depends": [
         "base",
-        "stock"
+        "stock",
+        "product_virtual_stock_conservative"
     ],
     "data": [
         'views/product.xml'
