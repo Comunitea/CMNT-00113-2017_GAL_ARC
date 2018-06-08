@@ -1,0 +1,26 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * global_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-28 14:26+0000\n"
+"PO-Revision-Date: 2017-09-28 16:26+0200\n"
+"Last-Translator: Jesús Ventosinos Mayor <jesus@comunitea.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: global_stock
+#: field:product.product,global_stock:0
+msgid "Global stock"
+msgstr "Stock global"
+
+#. module: global_stock
+#: model:ir.model,name:global_stock.model_product_product
+msgid "Product"
+msgstr "Producto"
