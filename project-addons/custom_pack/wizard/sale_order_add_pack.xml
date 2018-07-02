@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="sale_order_add_pack_form_view" model="ir.ui.view">
+        <field name="name">sale.order.add.pack.form</field>
+        <field name="model">sale.order.add.pack</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="orig_sale_line" invisible="1"/>
+                    <field name="product" attrs="{'readonly': [('orig_sale_line', '!=', False)]}"/>
+                    <field name="qty"/>
+                    <field name="product_lines" colspan="2" nolabel="1">
+                        <tree editable="top" create="0" delete="0">
+                            <field name="option" invisible="1"/>
+                            <field name="option_name" readonly="1"/>
+                            <field name="available_products" invisible="1"/>
+                            <field name="created_line_id" invisible="1"/>
+                            <field name="selected_product"
+                                domain="[('id', 'in', available_products)]"
+                                attrs="{'readonly': [('created_line_id', '!=', False)]}"/>
+                            <field name="qty_available"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="confirm" string="confirm" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window name="Add pack"
+        res_model="sale.order.add.pack"
+        view_id="sale_order_add_pack_form_view"
+        view_mode="form"
+        target="new"
+        id="sale_order_add_pack_action"/>
+</odoo>
