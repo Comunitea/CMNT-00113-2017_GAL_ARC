@@ -29,7 +29,7 @@
             <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
                 <attribute name="attrs">{'readonly': [('pack_line', '=', True)]}</attribute>
             </xpath>
-            <!--xpath expr="//field[@name='order_line']//tree" position="inside">
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
                 <button name="%(sale_order_add_pack_action)d"
                         type="action"
                         string="Modify pack"
@@ -38,7 +38,7 @@
                         context="{'default_product': product_id, 'default_qty': product_uom_qty}"
                         attrs="{'invisible': ['|', ('pack_line', '=', False), ('pack_parent_line', '!=', False)]}"
                 />
-            </xpath-->
+            </xpath>
         </field>
     </record>
 </odoo>

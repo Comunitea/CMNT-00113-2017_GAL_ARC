@@ -12,6 +12,7 @@ class SaleOrderAddPack(models.TransientModel):
     product_lines = fields.One2many('sale.order.add.pack.line', 'wizard')
     orig_sale_line = fields.Many2one('sale.order.line')
     qty = fields.Float()
+    created = fields.Boolean()
 
     @api.model
     def default_get(self, fields_list):
@@ -27,9 +28,11 @@ class SaleOrderAddPack(models.TransientModel):
                      {'option': child.option.id,
                       'option_name': child.option.name,
                       'selected_product': child.product_id.id,
+                      'selected_product_name': child.product_id.name,
                       'qty_available': child.product_id.qty_available,
                       'created_line_id': child.id}))
         res['product_lines'] = product_lines
+        res['created'] = True
         return res
 
     @api.onchange('product')
@@ -63,14 +66,14 @@ class SaleOrderAddPack(models.TransientModel):
             return self.env['sale.order.line'].create(
                 new_line._convert_to_write(line_vals))
         write_line.write({'product_uom_qty': qty})
+        return write_line
 
     @api.multi
     def confirm(self):
-
         write_line = None
         if self._context['active_model'] == 'sale.order.line':
             write_line = self.env['sale.order.line'].browse(
-                self._context('active_id'))
+                self._context['active_id'])
         super_line = self._create_line(
             self.product, self.qty, write_line=write_line)
         for line in self.product_lines:
@@ -110,6 +113,8 @@ class SaleOrderAddPackLine(models.TransientModel):
     available_products = fields.One2many(
         'product.product', compute='_compute_available_products')
     selected_product = fields.Many2one('product.product', required=True)
+    selected_product_name = fields.Char(related='selected_product.name',
+                                        readonly=True)
     qty_available = fields.Float(
         related='selected_product.qty_available', readonly=True)
     created_line_id = fields.Many2one('sale.order.line')
@@ -125,13 +130,18 @@ class SaleOrderAddPackLine(models.TransientModel):
 
     @api.multi
     def _check_qty(self):
+        if self._context['active_model'] == 'sale.order.line':
+            order_id = self.env['sale.order.line'].browse(
+                self._context['active_id']).order_id
+        else:
+            order_id = self._context['active_id']
         pack_product = self.env['product.pack.product'].search(
                 [('option_id', '=', self.option.id),
                  ('product_id', '=', self.selected_product.id)])
         new_line = self.env['sale.order.line'].new({
             'product_id': self.selected_product.id,
             'product_uom_qty': self.wizard.qty * pack_product.qty_multiplier,
-            'order_id': self._context.get('active_id'),
+            'order_id': order_id,
         })
         new_line.product_id_change()
         new_line.product_uom_qty = self.wizard.qty * \
