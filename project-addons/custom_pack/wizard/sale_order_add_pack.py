@@ -31,8 +31,8 @@ class SaleOrderAddPack(models.TransientModel):
                       'selected_product_name': child.product_id.name,
                       'qty_available': child.product_id.qty_available,
                       'created_line_id': child.id}))
-        res['product_lines'] = product_lines
-        res['created'] = True
+            res['product_lines'] = product_lines
+            res['created'] = True
         return res
 
     @api.onchange('product')
