@@ -13,7 +13,8 @@
     'installable': True,
     'depends': [
         'base',
-        'purchase'
+        'purchase',
+        'connector_magento'
     ],
     'data': [
     ],
