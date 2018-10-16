@@ -2,7 +2,7 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 from odoo.addons.component.core import Component
 from odoo.addons.connector.components.mapper import mapping
 
