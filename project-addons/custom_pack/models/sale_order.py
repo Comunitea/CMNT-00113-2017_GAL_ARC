@@ -31,7 +31,7 @@ class SaleOrderImporter(Component):
     def _merge_sub_items(self, product_type, top_item, child_items):
         super(SaleOrderImporter, self)._merge_sub_items(
             product_type, top_item, child_items)
-        if child_items and product_type=='bundle':
+        if child_items and product_type == 'bundle':
             for child_item in child_items:
                 child_item['child_lines'] = []
             top_item['child_lines'] = child_items
@@ -51,6 +51,7 @@ class SaleOrderLineImportMapper(Component):
         if map_record.source.get(from_attr):
             return super(SaleOrderLineImportMapper, self)._map_child(
                 map_record, from_attr, to_attr, model_name)
+
 
 class MagentoSaleOrderLine(models.Model):
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//span[@t-field='l.name']/../../td[5]" position="replace">
+                <td class="text-right">
+                        <span t-esc="', '.join(map(lambda x: (x.tax_group_id.name), l.tax_id))"/>
+                </td>
+            </xpath>
+            <xpath expr="//div[@t-if='doc.user_id.name']" position="replace">
+            </xpath>
+            <xpath expr="//div[@t-field='doc.partner_shipping_id']/../.." position="replace"/>
+        </template>
+
+</odoo>

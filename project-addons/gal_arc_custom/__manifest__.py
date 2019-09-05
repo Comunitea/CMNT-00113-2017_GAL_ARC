@@ -17,5 +17,6 @@
         'connector_magento'
     ],
     'data': [
+        'views/sale.xml'
     ],
 }
