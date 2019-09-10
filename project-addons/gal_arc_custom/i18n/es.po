@@ -34,3 +34,19 @@ msgstr "Nombre de producto proveedor"
 #: model:ir.model.fields,field_description:gal_arc_custom.field_purchase_order_line_supplier_ref
 msgid "Supplier Ref"
 msgstr "Referencia de producto proveedor"
+
+#. module: gal_arc_custom
+#: model:ir.ui.view,arch_db:gal_arc_custom.view_magento_backend_form
+msgid "Force Update all the products stock quantities"
+msgstr "Forzar actualización del stock de todos los productos"
+
+#. module: gal_arc_custom
+#: model:ir.ui.view,arch_db:gal_arc_custom.view_magento_backend_form
+msgid "Forze update"
+msgstr "Forzar actualización"
+
+
+#. module: gal_arc_custom
+#: model:ir.ui.view,arch_db:gal_arc_custom.view_magento_backend_form
+msgid "This action will force the synchronization of the stock of all products, the process will take to complete"
+msgstr "esta acción forzará la sincronización del stock de todos los productos, el proceso tardará en completarse"

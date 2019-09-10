@@ -17,6 +17,7 @@
         'connector_magento'
     ],
     'data': [
-        'views/sale.xml'
+        'views/sale.xml',
+        'views/magento_backend.xml'
     ],
 }
