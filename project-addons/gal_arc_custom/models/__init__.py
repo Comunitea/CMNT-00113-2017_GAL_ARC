@@ -5,3 +5,4 @@ from . import purchase
 from . import product
 from . import fields
 from . import magento_backend
+from . import queue_job

@@ -18,6 +18,7 @@
     ],
     'data': [
         'views/sale.xml',
-        'views/magento_backend.xml'
+        'views/magento_backend.xml',
+        'data/ir_cron.xml'
     ],
 }
